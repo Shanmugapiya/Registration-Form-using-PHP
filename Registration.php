@@ -88,17 +88,21 @@
         else{
 		move_uploaded_file($filetmp,$filepath);
 		}
-		// for generating randum user id (unique 10 digits)
-        $randnum = rand(1111111111,9999999999);
+		// random 5 digits
+        $randnum = rand(11111,99999);
+		//Parses an English Textual Date or Time Into a Unix Timestamp
+		// it increases every second
+		$stamp = strtotime ("now");
+		$oderid="$stamp$randnum";
 
-	    $query="Insert into reg(Name,Rollno,Department,Yearofstudy,Email,Password,userid) values('$name','$rollno','$department','$yearofstudy','$email','$encp','$randnum')";
+	    $query="Insert into reg(Name,Rollno,Department,Yearofstudy,Email,Password,userid) values('$name','$rollno','$department','$yearofstudy','$email','$encp','$oderid')";
 	  $result=mysqli_query($con,$query) or die("error in inserting data in db" . mysql_error());
 	  		
 		
 		
 		if($result>0)
 		{
-		 echo nl2br("\n Registered succesfully!!! \n your user id is :  $randnum ");
+		 echo nl2br("\n Registered succesfully!!! \n your user id is :  $oderid ");
 		}
 			
 	
